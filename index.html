@@ -150,6 +150,9 @@ canvas{width:100%;display:block;background:#7FA6B8;border:1px solid var(--line);
 .vt-kapat{width:100%;margin-top:8px;background:var(--panel);color:var(--parch)}
 .bk-gorsel{margin:0 -18px 12px;line-height:0;border-radius:6px 6px 0 0;overflow:hidden}
 .bk-gorsel img{width:100%;display:block}
+.dilbtn{position:absolute;right:14px;top:14px;background:var(--ink2);border:1px solid var(--line);
+  color:var(--parch);padding:5px 11px;border-radius:5px;font-size:12px;letter-spacing:1px;z-index:5}
+#select{position:relative}
 .kg-ac{width:100%;margin-bottom:12px;font-size:14px}
 .kg-ust{display:flex;align-items:baseline;justify-content:space-between;padding:12px 0 10px;border-bottom:1px solid var(--line)}
 .kg-ust b{font-size:20px;color:var(--ember)}
@@ -188,20 +191,21 @@ window.onerror=function(msg,src,ln,col){
 };
 </script>
 <div class="screen" id="select">
-  <h1>Çağlar Savaşı</h1>
-  <p class="sub">Prototip sürüm — medeniyetini seç ve orduyu yürüt</p>
+  <button class="dilbtn" id="dilbtn" data-dil="1">EN</button>
+  <h1 data-i18n="Çağlar Savaşı">Çağlar Savaşı</h1>
+  <p class="sub" data-i18n="Prototip sürüm — medeniyetini seç ve orduyu yürüt">Prototip sürüm — medeniyetini seç ve orduyu yürüt</p>
   <div class="zorluk">
-    <label for="zorluksec">Rakip zorluğu</label>
+    <label for="zorluksec" data-i18n="Rakip zorluğu">Rakip zorluğu</label>
     <select id="zorluksec">
-      <option value="kolay">Kolay — acemi komutan</option>
-      <option value="normal" selected>Normal — deneyimli komutan</option>
-      <option value="zor">Zor — usta stratejist</option>
+      <option value="kolay" data-i18n="Kolay — acemi komutan">Kolay — acemi komutan</option>
+      <option value="normal" selected data-i18n="Normal — deneyimli komutan">Normal — deneyimli komutan</option>
+      <option value="zor" data-i18n="Zor — usta stratejist">Zor — usta stratejist</option>
     </select>
   </div>
   <div id="jsuyari">JavaScript çalışmıyor. iPhone'da Dosyalar uygulamasının önizlemesi
     JavaScript'i engeller: dosyayı açınca sağ üstteki paylaş simgesine dokunup
     <b>Safari'de Aç</b> seçeneğini kullan.</div>
-  <button class="big kg-ac" data-eylem="karargah">⚔ Karargâh — yükseltmeler, ustalık, görevler</button>
+  <button class="big kg-ac" data-eylem="karargah" data-i18n="⚔ Karargâh — yükseltmeler, ustalık, görevler">⚔ Karargâh — yükseltmeler, ustalık, görevler</button>
   <p id="durum">JavaScript yükleniyor…</p>
   <div class="civs" id="civlist">
     <button class="civ" data-civ="veyra"><b>Veyra Doğuşu</b><span class="slg">&ldquo;Rüzgardan hızlı, gölgeden sessiz.&rdquo;</span><span class="bns">Süvariler %10 hızlı — Özel piyade: Rüzgar Kılıcı (88 can, hızlı, ucuz)</span></button>
@@ -215,14 +219,14 @@ window.onerror=function(msg,src,ln,col){
 <div class="modal" id="kgmodal">
     <div class="mbox mbox-genis">
       <div id="kgicerik"></div>
-      <button class="big vt-kapat" data-eylem="kgkapat">Kapat</button>
+      <button class="big vt-kapat" data-eylem="kgkapat" data-i18n="Kapat">Kapat</button>
     </div>
   </div>
 
   <div class="modal" id="vitrinmodal">
     <div class="mbox mbox-genis">
       <div id="vitrinicerik"></div>
-      <button class="big vt-kapat" data-eylem="vitrinkapat">Geri dön</button>
+      <button class="big vt-kapat" data-eylem="vitrinkapat" data-i18n="Geri dön">Geri dön</button>
     </div>
   </div>
 
@@ -247,26 +251,26 @@ window.onerror=function(msg,src,ln,col){
     </div>
     <div class="units" id="ubar"></div>
     <div id="tavsiye"></div>
-    <div id="toast">Sahada en fazla 12 birim tutabilirsin. Pahalı birimler daha az yer kaplamaz ama çok daha güçlüdür.</div>
+    <div id="toast" data-i18n="Sahada en fazla 10 birim tutabilirsin. Pahalı birimler daha az yer kaplamaz ama çok daha güçlüdür.">Sahada en fazla 10 birim tutabilirsin. Pahalı birimler daha az yer kaplamaz ama çok daha güçlüdür.</div>
     <div class="modal" id="infomodal">
       <div class="mbox">
-        <h2>Birim bilgisi</h2>
+        <h2 data-i18n="Birim bilgisi">Birim bilgisi</h2>
         <div id="infoicerik"></div>
-        <button class="big" data-eylem="bilgikapat" style="width:100%;margin-top:6px">Kapat</button>
+        <button class="big" data-eylem="bilgikapat" style="width:100%;margin-top:6px" data-i18n="Kapat">Kapat</button>
       </div>
     </div>
     <div class="modal" id="menumodal">
       <div class="mbox">
-        <h2>Duraklatıldı</h2>
+        <h2 data-i18n="Duraklatıldı">Duraklatıldı</h2>
         <p id="menubilgi"></p>
-        <button class="menuitem" data-eylem="devam"><b>Savaşa dön</b><span>Oyun kaldığı yerden sürer</span></button>
-        <button class="menuitem" data-eylem="yeniden"><b>Yeniden başlat</b><span>Aynı medeniyetle yeni savaş</span></button>
-        <button class="menuitem" data-eylem="anamenu"><b>Medeniyet seçimine dön</b><span>Başka medeniyet veya zorluk seç</span></button>
+        <button class="menuitem" data-eylem="devam"><b data-i18n="Savaşa dön">Savaşa dön</b><span data-i18n="Oyun kaldığı yerden sürer">Oyun kaldığı yerden sürer</span></button>
+        <button class="menuitem" data-eylem="yeniden"><b data-i18n="Yeniden başlat">Yeniden başlat</b><span data-i18n="Aynı medeniyetle yeni savaş">Aynı medeniyetle yeni savaş</span></button>
+        <button class="menuitem" data-eylem="anamenu"><b data-i18n="Medeniyet seçimine dön">Medeniyet seçimine dön</b><span data-i18n="Başka medeniyet veya zorluk seç">Başka medeniyet veya zorluk seç</span></button>
       </div>
     </div>
     <div class="modal" id="cardmodal">
       <div class="mbox">
-        <h2>Yeni çağ — kartını seç</h2>
+        <h2 data-i18n="Yeni çağ — kartını seç">Yeni çağ — kartını seç</h2>
         <div id="cardlist"></div>
       </div>
     </div>
@@ -274,8 +278,8 @@ window.onerror=function(msg,src,ln,col){
       <div class="mbox">
         <div id="endtitle"></div>
         <div id="endtxt"></div>
-        <button class="big" data-eylem="yeniden">Yeniden oyna</button>
-        <button class="menuitem" data-eylem="anamenu" style="margin-top:10px"><b>Medeniyet seçimine dön</b></button>
+        <button class="big" data-eylem="yeniden" data-i18n="Yeniden oyna">Yeniden oyna</button>
+        <button class="menuitem" data-eylem="anamenu" style="margin-top:10px"><b data-i18n="Medeniyet seçimine dön">Medeniyet seçimine dön</b></button>
       </div>
     </div>
   </div>
@@ -438,6 +442,198 @@ function basarimOdulAl(id){
   KAYIT.basarim[id]=true; KAYIT.gold+=b.odul; kayitYaz(); return true;
 }
 
+// ==== DIL / LANGUAGE ====
+let DIL='tr';
+const EN={
+// --- birimler / units ---
+'Yakın Dövüşçü':'Melee Fighter','Okçu':'Archer','Kalkanlı Okçu':'Shield Archer',
+'Atlı Savaşçı':'Horse Warrior','Atlı Okçu':'Horse Archer','Fil Binicisi':'Elephant Rider',
+'Lanet Büyücü':'Curse Mage','Mistik Büyücü':'Mystic Mage','Şifacı':'Healer','Keşiş':'Monk',
+'Akıncı':'Raider','Kalkanlı Atlı Okçu':'Shielded Horse Archer','Ruh Emici':'Soul Drinker',
+'Kargıcı':'Pikeman','Sözleşmeli Kırıcı':'Contract Breaker',
+'Rüzgar Kılıcı':'Windblade','Demirbend':'Ironbind','Ruhbağlı':'Soulbound',
+'Avcı':'Hunter','Paralı Kılıç':'Hired Blade',
+// --- medeniyetler / civilizations ---
+'Veyra Doğuşu':'Rise of Veyra','Zeruhan Egemenliği':'Zeruhan Dominion',
+'Morvain Tarikatı':'Order of Morvain','Askarid Birliği':'Askarid Company',
+'Tharvenn Loncası':'Tharvenn Guild',
+'Rüzgardan hızlı, gölgeden sessiz.':'Swifter than the wind, quieter than the shadow.',
+'Duvarlar yıkılır, biz kalırız.':'Walls fall. We remain.',
+'Görünmeyeni bilen, görüneni yönetir.':'Who knows the unseen commands the seen.',
+'Ok yaydan çıkar, kader yazılır.':'The arrow leaves the bow, and fate is written.',
+'Her savaşın bir bedeli, her bedelin bir kazananı vardır.':'Every war has its price, and every price its winner.',
+'Yağma: öldürme geliri +%40 · Süvariler %10 hızlı — Özel piyade: Rüzgar Kılıcı':
+  'Plunder: +40% kill income · Cavalry 10% faster — Special infantry: Windblade',
+'Kuşatma: düşman üssüne +%45 hasar · Üs saldırısı +%30 · Kalkanlı, fil, imza +%15 can':
+  'Siege: +45% damage to enemy base · Base attack +30% · Shield, elephant and signature +15% HP',
+'Büyücü etkisi +%15 — Özel piyade: Ruhbağlı (ölünce patlar)':
+  'Mage power +15% — Special infantry: Soulbound (explodes on death)',
+'Menzilli birimlerin menzili +%8 — Özel piyade: Avcı (mızrak fırlatır)':
+  'Ranged units +8% range — Special infantry: Hunter (throws a javelin)',
+'Tüm birimler %3 ucuz — Özel piyade: Paralı Kılıç (ölünce 3g iade)':
+  'All units 3% cheaper — Special infantry: Hired Blade (refunds 3g on death)',
+// --- kategoriler / categories ---
+'Piyade':'Infantry','Menzilli':'Ranged','Süvari':'Cavalry','Ağır':'Heavy','Büyü':'Magic','Destek':'Support',
+// --- yetenekler / abilities ---
+'Ucuz ve hızlı basılır. Ön safı tutar.':'Cheap and quick to deploy. Holds the front line.',
+'Uzun menzilden vurur, yakın dövüşte erir.':'Strikes from afar, melts in melee.',
+'Gelen ok hasarını yarıya düşürür.':'Halves incoming arrow damage.',
+'İlk vuruşunda 1.6 kat şarj hasarı verir.':'Deals 1.6x charge damage on its first hit.',
+'Ateş ederken geri çekilir (vur-kaç).':'Retreats while shooting (hit and run).',
+'Önündeki 3 birime birden vurur ve geri iter.':'Hits 3 units at once and knocks them back.',
+'Aynı anda 3 düşmana alan hasarı verir.':'Deals area damage to 3 enemies at once.',
+'Saniyede 6 can yeniler, saldırmaz.':'Restores 6 HP per second, does not attack.',
+'Menzilindeki düşman büyücüleri susturur.':'Silences enemy mages within its range.',
+'En hızlı süvari. Şarj hasarı verir.':'The fastest cavalry. Deals charge damage.',
+'Zırhlı atlı okçu — ok hasarını yarıdan fazla azaltır.':'Armoured horse archer — blocks over half of arrow damage.',
+'Verdiği hasarın bir kısmını en yaralı dostuna can olarak aktarır.':'Transfers part of its damage as HP to the most wounded ally.',
+'Süvari ve ağır birimlere delici ek hasar verir.':'Deals extra piercing damage to cavalry and heavy units.',
+'Büyücülere kat kat hasar verir. Susturmaz, öldürür.':'Deals multiplied damage to mages. It does not silence — it kills.',
+// --- gorevler / quests ---
+'3 maç kazan':'Win 3 matches','5 maç kazan':'Win 5 matches','4 maç oyna':'Play 4 matches',
+'60 birim bas':'Deploy 60 units','120 birim bas':'Deploy 120 units',
+'40 düşman birimi yok et':'Destroy 40 enemy units','5 kez çağ atla':'Advance an age 5 times',
+'2 farklı medeniyetle kazan':'Win with 2 different civilizations',
+'3 farklı medeniyetle oyna':'Play with 3 different civilizations',
+// --- basarimlar / achievements ---
+'İlk On':'First Ten','Yüzbaşı':'Centurion','Çağların Komutanı':'Commander of Ages',
+'Sadık Asker':'Loyal Soldier','Ölümsüz Sefer':'Endless Campaign','Ordular Sahibi':'Lord of Armies',
+'Savaş Baltası':'War Axe','Beş Sancak':'Five Banners',
+'10 maç kazan':'Win 10 matches','100 maç kazan':'Win 100 matches','500 maç kazan':'Win 500 matches',
+'50 günlük görev tamamla':'Complete 50 daily quests','500 günlük görev tamamla':'Complete 500 daily quests',
+'1000 birim bas':'Deploy 1000 units','2000 düşman birimi yok et':'Destroy 2000 enemy units',
+'5 medeniyetin hepsiyle kazan':'Win with all 5 civilizations',
+// --- kartlar: ekonomi / economy cards ---
+'Haraç Yolu':'Tribute Road','Pasif gold geliri +%12':'Passive gold income +12%',
+'Vergi Fermanı':'Tax Edict','Pasif gold geliri +%20':'Passive gold income +20%',
+'Savaş Ganimeti':'Spoils of War','Öldürme geliri +%50':'Kill income +50%',
+'Ganimet Kervanı':'Plunder Caravan','Öldürme geliri +%90, pasif gelir -%10':'Kill income +90%, passive income -10%',
+'Acemi Kışlası':'Recruit Barracks','Piyade birimleri %15 ucuz':'Infantry units 15% cheaper',
+'Yay Atölyesi':'Bowyer Workshop','Menzilli birimler %15 ucuz':'Ranged units 15% cheaper',
+'Ahır Anlaşması':'Stable Contract','Süvari birimleri %15 ucuz':'Cavalry units 15% cheaper',
+'Büyü Loncası':'Mage Guild','Büyücüler %15 ucuz':'Mages 15% cheaper',
+'Ağır Yük Sözleşmesi':'Heavy Freight Deal','Ağır birimler %14 ucuz':'Heavy units 14% cheaper',
+'Hızlı Seferberlik':'Rapid Mobilization','Birim basma beklemesi -%12':'Unit deploy cooldown -12%',
+'Kışla Genişletme':'Barracks Expansion','Bekleme -%22, birimler %6 pahalı':'Cooldown -22%, units 6% pricier',
+'Kervan Yolu':'Caravan Route','Çağ atlama bedeli -%45':'Age advance cost -45%',
+'Taş Ocağı':'Stone Quarry','Üs yükseltme %35 ucuz':'Base upgrades 35% cheaper',
+'Silah Ustası':'Weapon Master','İmza birimi güçlendirme %35 ucuz':'Signature upgrades 35% cheaper',
+'Seferi Ordu':'Expedition Army','Saha limiti +2 birim':'Field limit +2 units',
+// --- kartlar: saldiri / attack cards ---
+'Keskin Namlular':'Keen Points','Menzilli birimlerin hasarı +%14':'Ranged damage +14%',
+'Uzun Yay':'Longbow','Menzilli birimlerin menzili +%14':'Ranged range +14%',
+'Ok Yağmuru':'Arrow Storm','Menzilli saldırı hızı +%18':'Ranged attack speed +18%',
+'Çelik Disiplin':'Steel Discipline','Piyade hasarı +%16':'Infantry damage +16%',
+'Savaş Temposu':'Battle Tempo','Piyade saldırı hızı +%18':'Infantry attack speed +18%',
+'Mahmuz Emri':'Spur Command','Süvari hızı +%14':'Cavalry speed +14%',
+'Şarj Borusu':'Charge Horn','Süvari ilk vuruşu 1.6 → 2.1 kat':'Cavalry first hit 1.6x → 2.1x',
+'Kadim Öfke':'Ancient Wrath','Büyücü yeteneklerinin etkisi +%14':'Mage ability power +14%',
+'Kara Büyü':'Dark Sorcery','Lanet eritmesi %3 → %4.2':'Curse decay 3% → 4.2%',
+'Ezici Yük':'Crushing Charge','Ağır birimlerin hasarı +%16':'Heavy unit damage +16%',
+'Fil Öfkesi':'Elephant Fury','Alan hasarı 1 birim daha vurur':'Area damage hits 1 more unit',
+'Kan Kokusu':'Scent of Blood','Canı %30 altındaki düşmana +%22 hasar':'+22% damage to enemies below 30% HP',
+'Delici Uçlar':'Piercing Tips','Üstünlük hasarı 2.5 → 2.9 kat':'Counter damage 2.5x → 2.9x',
+'Savaş Çığlığı':'War Cry','Tüm birimlerin hasarı +%9':'All unit damage +9%',
+'Kuşatma Kancası':'Siege Hook','Birimlerin düşman üssüne hasarı +%30':'+30% unit damage to the enemy base',
+// --- kartlar: savunma / defence cards ---
+'Örülmüş Kalkanlar':'Woven Shields','Tüm birimler +%9 can':'All units +9% HP',
+'Sarsılmaz Saflar':'Unshaken Ranks','Piyade +%14 can':'Infantry +14% HP',
+'Tüy Yelek':'Feathered Vest','Menzilli birimler +%14 can':'Ranged units +14% HP',
+'Zırhlı Eyer':'Armoured Saddle','Süvari +%14 can':'Cavalry +14% HP',
+'Büyü Muskası':'Warding Charm','Büyücüler +%16 can':'Mages +16% HP',
+'Kalın Deri':'Thick Hide','Ağır birimler +%14 can':'Heavy units +14% HP',
+'Zırhlı Zincir':'Chain Mail','Kalkan ok direnci %50 → %65':'Shield arrow resistance 50% → 65%',
+'Dövülmüş Plaka':'Forged Plate','Tüm birimler aldıkları hasarın %8\'ini yok sayar':'All units ignore 8% of incoming damage',
+'Direniş Yemini':'Oath of Endurance','Canı %30 altındaki birimler %22 az hasar alır':'Units below 30% HP take 22% less damage',
+'Kan Bağı':'Blood Bond','Birimler saniyede 0.8 can yeniler':'Units restore 0.8 HP per second',
+'Şifalı Sular':'Healing Waters','Şifa ve can emme +%25':'Healing and lifesteal +25%',
+'Sessiz Yemin':'Vow of Silence','Keşiş susturma menzili +%18':'Monk silence range +18%',
+'Yıkım Emri':'Order of Ruin','Üs saldırısı hasarı +%35':'Base attack damage +35%',
+'Tamir Ekibi':'Repair Crew','Ana üs saniyede 1.6 can yeniler':'Main base restores 1.6 HP per second',
+'Surlar':'Ramparts','Ana üs +%16 can (anında)':'Main base +16% HP (instantly)',
+// --- arayuz / interface ---
+'Ekonomi':'Economy','Saldırı':'Attack','Savunma':'Defence',
+'Yükseltme':'Upgrades','Ustalık':'Mastery','Görevler':'Quests','Başarımlar':'Achievements',
+'AZAMİ':'MAX','AZAMİ SEVİYE':'MAX LEVEL','ALINDI':'CLAIMED','AL':'CLAIM',
+'Zafer!':'Victory!','Yenilgi':'Defeat','Yeniden oyna':'Play again',
+'Duraklatıldı':'Paused','Savaşa dön':'Back to battle','Oyun kaldığı yerden sürer':'The battle resumes where it left off',
+'Yeniden başlat':'Restart','Aynı medeniyetle yeni savaş':'A new battle with the same civilization',
+'Medeniyet seçimine dön':'Back to civilization select','Başka medeniyet veya zorluk seç':'Pick another civilization or difficulty',
+'Yeni çağ — kartını seç':'New age — choose your card','Birim bilgisi':'Unit details','Kapat':'Close',
+'Geri dön':'Back','Bu medeniyetle savaş':'Fight with this civilization','Kadro — 10 birim':'Roster — 10 units',
+'Eksik birim':'Missing unit','İmza birimi':'Signature unit','Güçlü olduğu':'Strong against',
+'Karşısında zayıf':'Weak against','2.5 kat hasar':'2.5x damage','2.5 kat hasar yer':'takes 2.5x damage',
+'Fiyat':'Cost','Bekleme':'Cooldown','Can':'HP','Hasar':'Damage','Menzil':'Range','Hız':'Speed',
+'Uzun':'Long','Orta':'Medium','Yakın':'Close','Çok hızlı':'Very fast','Hızlı':'Fast','Yavaş':'Slow',
+'Seviye':'Level','Ödül':'Reward','Puan':'Points','Tam ustalık':'Full mastery',
+'Rakip zorluğu':'Opponent difficulty','Kolay — acemi komutan':'Easy — green commander',
+'Normal — deneyimli komutan':'Normal — seasoned commander','Zor — usta stratejist':'Hard — master strategist',
+'Çağlar Savaşı':'War of Ages','Prototip sürüm — medeniyetini seç ve orduyu yürüt':'Prototype build — choose your civilization and march',
+'⚔ Karargâh — yükseltmeler, ustalık, görevler':'⚔ Headquarters — upgrades, mastery, quests',
+'Üs Saldırısı':'Base Attack','Güçlendir':'Upgrade','Yükselt':'Upgrade','galibiyet':'wins','maç':'matches',
+'gold':'gold','can':'HP','hasar':'damage','birimlere güçlü':'units','Rakip medeniyet: ':'Opponent civilization: ',
+'Saha dolu — önce yer açılmalı':'Field is full — make room first',
+'Rakipte ağırlık: ':'Enemy is massing: ','→ önerilen karşılık: ':'→ suggested answer: ',
+' — kadronda doğrudan karşılığı yok, çeşitlendir':' — no direct answer in your roster; diversify',
+'Sahada en fazla 10 birim tutabilirsin. Pahalı birimler daha az yer kaplamaz ama çok daha güçlüdür.':
+  'You can hold at most 10 units on the field. Expensive units take no less room, but they are far stronger.',
+'5 medeniyet — incelemek için dokun':'5 civilizations — tap to inspect',
+'JavaScript yükleniyor…':'Loading JavaScript…',
+'Maç 90 sn\'den kısa: ustalık puanı verilmedi':'Match shorter than 90s: no mastery points awarded',
+' ustalık +':' mastery +',' puan':' points',' Ustalık açıldı!':' Mastery unlocked!',
+'Başarımlar kalıcıdır, bir kez alınır.':'Achievements are permanent and claimed once.',
+'Günlük görevler her gün yenilenir.':'Daily quests refresh every day.',
+'Kategori yükseltmeleri o kategorideki tüm birimleri güçlendirir. Azami seviyede toplam +%12 can ve hasar.':
+  'Category upgrades strengthen every unit in that category. At max level, a total of +12% HP and damage.',
+'Ustalık goldla alınmaz — o birimle oynayarak kazanılır. Kazanan maç 3, kaybeden 1 puan (maç en az 90 sn sürmeli) ve o maçta harcadığın goldun en az dörtte birini o birime yatırmış olmalısın.':
+  'Mastery cannot be bought with gold — it is earned by playing that unit. A win gives 3 points and a loss 1 (the match must last at least 90s), and you must have spent at least a quarter of that match\'s gold on that unit.',
+'canın %3\u0027ü':'3% of HP',
+'Saniyede hedefin azami canının yüzde 3\u0027ünü eritir. Kalın canlıya karşı en iyisi.':
+  'Melts 3% of the target\u0027s maximum HP per second. Best against high-HP units.','Güçlendirme':'Upgrade','Azami seviyede':'At max level',
+// birim kisa kodlari / unit codes
+'YD':'MF','OK':'AR','KO':'SA','AS':'HW','AO':'HA','FB':'ER','LB':'CM','MB':'MM','ŞF':'HL','KŞ':'MK',
+'AK':'RD','KA':'SH','RE':'SD','KG':'PK','SK':'CB','RK':'WB','DB':'IB','RB':'SB','AV':'HN','PK':'HB',
+'Çağ':'Age','Çağa geç':'Advance to age','Çağ hazır':'Age ready','(harcadıkça dolar)':'(fills as you spend)',
+'gold gerekiyor':'gold required','son çağ':'final age',
+'Premium Pass\'i dene (prototip: bedava aç)':'Try Premium Pass (prototype: unlock free)',
+'Premium\'u kapat (prototip)':'Disable Premium (prototype)',
+'Premium aktif:':'Premium active:',' 2 ekstra görev ve %50 fazla ödül.':' 2 extra quests and 50% more reward.'
+};
+function L(s){
+  if(DIL!=='en' || s===undefined || s===null) return s;
+  return (EN[s]!==undefined) ? EN[s] : s;
+}
+function dilDegistir(d){
+  DIL=d; KAYIT.dil=d; kayitYaz();
+  dilUygula();
+  if(document.getElementById('kgmodal').style.display==='flex') kgAc();
+  if(document.getElementById('vitrinmodal').style.display==='flex'&&vitrinCiv) vitrinAc(vitrinCiv);
+  if(civ[0]){ temizle(document.getElementById('ubar')); buildUI(); refreshButtons(); }
+}
+function dilUygula(){
+  // statik metinler
+  const el=document.querySelectorAll('[data-i18n]');
+  for(let i=0;i<el.length;i++){
+    const anahtar=el[i].getAttribute('data-i18n');
+    el[i].textContent=L(anahtar);
+  }
+  // medeniyet kartlari
+  const kartlar=document.querySelectorAll('#civlist .civ');
+  for(let i=0;i<kartlar.length;i++){
+    const k=kartlar[i].getAttribute('data-civ'), C=CIVS[k];
+    if(!C) continue;
+    kartlar[i].innerHTML='<b>'+L(C.ad)+'</b><span class="slg">“'+L(C.slg)+'”</span>'
+      +'<span class="bns">'+L(C.bns)+'</span>';
+  }
+  const dbtn=document.getElementById('dilbtn');
+  if(dbtn) dbtn.textContent = DIL==='tr' ? 'EN' : 'TR';
+  const zs=document.getElementById('zorluksec');
+  if(zs&&zs.options) for(let i=0;i<zs.options.length;i++){
+    const a=zs.options[i].getAttribute('data-i18n');
+    if(a) zs.options[i].textContent=L(a);
+  }
+}
+
 // ==== VERI ====
 const UNITS = {
   melee:{ad:'Yakın Dövüşçü',k:'YD',hp:100,dmg:12,rng:22,spd:40,cost:50,cat:'inf'},
@@ -489,7 +685,7 @@ function buyImza(t){
   const c=imzaCost(t);
   if(gold[t]<c) return false;
   gold[t]-=c; spent[t]+=c; imzaLvl[t]++;
-  if(t===0) toast(UNITS[CIVKADRO[civOf(0)].imza].ad+' güçlendi — seviye '+imzaLvl[0]);
+  if(t===0) toast(L(UNITS[CIVKADRO[civOf(0)].imza].ad)+' — '+L('Seviye')+' '+imzaLvl[0]);
   checkAge(t); return true;
 }
 function sahadaki(t){ let n=0; for(const u of units) if(u.team===t&&u.hp>0) n++; return n; }
@@ -501,7 +697,7 @@ const YETENEK={
   horse:'İlk vuruşunda 1.6 kat şarj hasarı verir.',
   harcher:'Ateş ederken geri çekilir (vur-kaç).',
   eleph:'Önündeki 3 birime birden vurur ve geri iter.',
-  curse:'Saniyede hedefin azami canının %3\'ünü eritir. Kalın canlıya karşı en iyisi.',
+  curse:'Saniyede hedefin azami canının yüzde 3\u0027ünü eritir. Kalın canlıya karşı en iyisi.',
   mystic:'Aynı anda 3 düşmana alan hasarı verir.',
   healer:'Saniyede 6 can yeniler, saldırmaz.',
   monk:'Menzilindeki düşman büyücüleri susturur.',
@@ -594,8 +790,8 @@ function cagAtla(t){
   if(gold[t]<c) return false;
   gold[t]-=c; age[t]++;
   if(t===0) macCag++;
-  if(t===0){ toast(['I.','II.','III.','IV.'][age[0]]+' Çağ başladı — kartını seç'); openCards(); }
-  else { const k=botPickCard(); toast('Rakip '+['I.','II.','III.','IV.'][age[1]]+' Çağa geçti: '+k); }
+  if(t===0){ toast(['I.','II.','III.','IV.'][age[0]]+' '+L('Çağ')); openCards(); }
+  else { const k=botPickCard(); toast(['I.','II.','III.','IV.'][age[1]]+' '+L('Çağ')+' · '+L(k)); }
   refreshButtons();
   return true;
 }
@@ -678,13 +874,13 @@ function statFor(key,team){
     if(key==='kargi'){ pierce=d.pierce+0.15*L; }
     if(key==='kirici'){ antimag=d.antimag+0.4*L; }
   }
-  return {...d,hp:Math.round(hp),maxhp:Math.round(hp),dmg,spd,rng,cost:Math.round(cost),
+  return {...d,ad:L(d.ad),hp:Math.round(hp),maxhp:Math.round(hp),dmg,spd,rng,cost:Math.round(cost),
     drain:drain,pierce:pierce,antimag:antimag,shieldStr:shieldStr};
 }
 function spawn(key,team){
   const s=statFor(key,team);
   if(gold[team]<s.cost||sbCd[team]>0) return false;
-  if(sahadaki(team)>=sahaLimit(team)){ if(team===0) toast('Saha dolu — önce yer açılmalı'); return false; }
+  if(sahadaki(team)>=sahaLimit(team)){ if(team===0) toast(L('Saha dolu — önce yer açılmalı')); return false; }
   gold[team]-=s.cost; spent[team]+=s.cost;
   sbCd[team]=beklemeSuresi(s.cost)*mods[team].cd;
   if(team===0){ harcamaBirim[key]=(harcamaBirim[key]||0)+s.cost; macBirim++; }
@@ -866,7 +1062,7 @@ function openCards(){
   for(const cat of ['eco','atk','def']){
     const c=randCard(cat,0); if(!c) continue;
     const b=document.createElement('button'); b.className='card';
-    b.innerHTML='<em>'+labels[cat]+'</em><br><b>'+c.ad+'</b><span>'+c.tx+'</span>';
+    b.innerHTML='<em>'+L(labels[cat])+'</em><br><b>'+L(c.ad)+'</b><span>'+L(c.tx)+'</span>';
     (function(btn,kart){
       var sec=function(e){ if(e&&e.preventDefault) e.preventDefault();
         if(!paused) return;
@@ -1342,8 +1538,8 @@ function draw(){
   mermiCiz(); kuleAtisCiz(); efektCiz();
   cx.setTransform(1,0,0,1,0,0);
   // ust bilgi
-  document.getElementById('goldtx').textContent=Math.floor(gold[0])+' gold';
-  document.getElementById('agetx').textContent=['I.','II.','III.','IV.'][age[0]]+' Çağ';
+  document.getElementById('goldtx').textContent=Math.floor(gold[0])+' '+L('gold');
+  document.getElementById('agetx').textContent=['I.','II.','III.','IV.'][age[0]]+' '+L('Çağ');
   document.querySelector('#php i').style.width=Math.max(0,bases[0].hp/bases[0].max*100)+'%';
   document.querySelector('#ehp i').style.width=Math.max(0,bases[1].hp/bases[1].max*100)+'%';
 }
@@ -1355,61 +1551,61 @@ function kgAc(sekme){
   gorevleriTazele();
   if(sekme) kgSekme=sekme;
   const g=KAYIT.gold;
-  let h='<div class="kg-ust"><b>'+g+' gold</b>'
-    +'<span>'+KAYIT.ist.galibiyet+' galibiyet · '+KAYIT.ist.mac+' maç</span></div>';
+  let h='<div class="kg-ust"><b>'+g+' '+L('gold')+'</b>'
+    +'<span>'+KAYIT.ist.galibiyet+' '+L('galibiyet')+' · '+KAYIT.ist.mac+' '+L('maç')+'</span></div>';
   h+='<div class="kg-sekme">'
     +['yukseltme','ustalik','gorev','basarim'].map(function(k){
-      const ad={yukseltme:'Yükseltme',ustalik:'Ustalık',gorev:'Görevler',basarim:'Başarımlar'}[k];
+      const ad=L({yukseltme:'Yükseltme',ustalik:'Ustalık',gorev:'Görevler',basarim:'Başarımlar'}[k]);
       return '<button class="kg-s'+(kgSekme===k?' aktif':'')+'" data-kgsekme="'+k+'">'+ad+'</button>';
     }).join('')+'</div>';
 
   if(kgSekme==='yukseltme'){
-    h+='<p class="kg-not">Kategori yükseltmeleri o kategorideki tüm birimleri güçlendirir. Azami seviyede toplam +%12 can ve hasar.</p>';
+    h+='<p class="kg-not">'+L('Kategori yükseltmeleri o kategorideki tüm birimleri güçlendirir. Azami seviyede toplam +%12 can ve hasar.')+'</p>';
     for(const cat of ['inf','rng','cav','hvy','mag','sup']){
       const sv=katSeviye(cat), mal=katMaliyet(cat), son=mal===null;
       const yeter=!son&&g>=mal;
-      h+='<div class="kg-sat"><div class="kg-sol"><b>'+KATAD_UZUN[cat]+'</b>'
-        +'<span>Seviye '+sv+'/10 · +%'+(sv*KAT_ARTIS*100).toFixed(1)+' can ve hasar</span>'
+      h+='<div class="kg-sat"><div class="kg-sol"><b>'+L(KATAD_UZUN[cat])+'</b>'
+        +'<span>'+L('Seviye')+' '+sv+'/10 · +%'+(sv*KAT_ARTIS*100).toFixed(1)+' '+L('can')+' / '+L('hasar')+'</span>'
         +'<i class="kg-bar"><u style="width:'+(sv*10)+'%"></u></i></div>'
         +'<button class="kg-btn'+(yeter?' hazir':'')+'" data-kgyuk="'+cat+'"'+((son||!yeter)?' disabled':'')+'>'
-        +(son?'AZAMİ':mal+'g')+'</button></div>';
+        +(son?L('AZAMİ'):mal+'g')+'</button></div>';
     }
   }
   if(kgSekme==='ustalik'){
-    h+='<p class="kg-not">Ustalık goldla alınmaz — o birimle oynayarak kazanılır. Kazanan maç 3, kaybeden 1 puan (maç en az 90 sn sürmeli) ve o maçta harcadığın goldun en az dörtte birini o birime yatırmış olmalısın.</p>';
+    h+='<p class="kg-not">'+L('Ustalık goldla alınmaz — o birimle oynayarak kazanılır. Kazanan maç 3, kaybeden 1 puan (maç en az 90 sn sürmeli) ve o maçta harcadığın goldun en az dörtte birini o birime yatırmış olmalısın.')+'</p>';
     const K=kadro(0);
     for(const k of K){
       const p=ustalikPuan(k), lv=ustalikSeviye(k), sonr=ustalikSonraki(k);
       const onc=lv>0?USTALIK_ESIK[lv-1]:0;
       const oran=sonr?Math.min(100,(p-onc)/(sonr-onc)*100):100;
-      h+='<div class="kg-sat"><div class="kg-sol"><b>'+UNITS[k].ad+' '+(lv?'<em>'+['I','II','III','IV','V'][lv-1]+'</em>':'')+'</b>'
-        +'<span>'+(sonr?(p+' / '+sonr+' puan'):'Tam ustalık')+' · +%'+(USTALIK_HP[lv]*100).toFixed(0)+' can, +%'+(USTALIK_DMG[lv]*100).toFixed(1)+' hasar</span>'
+      h+='<div class="kg-sat"><div class="kg-sol"><b>'+L(UNITS[k].ad)+' '+(lv?'<em>'+['I','II','III','IV','V'][lv-1]+'</em>':'')+'</b>'
+        +'<span>'+(sonr?(p+' / '+sonr+L(' puan')):L('Tam ustalık'))+' · +%'+(USTALIK_HP[lv]*100).toFixed(0)+' '+L('can')+', +%'+(USTALIK_DMG[lv]*100).toFixed(1)+' '+L('hasar')+'</span>'
         +'<i class="kg-bar"><u style="width:'+oran+'%"></u></i></div></div>';
     }
   }
   if(kgSekme==='gorev'){
-    h+='<p class="kg-not">Günlük görevler her gün yenilenir.'+(KAYIT.pass?' <b>Premium aktif:</b> 2 ekstra görev ve %50 fazla ödül.':'')+'</p>';
+    h+='<p class="kg-not">'+L('Günlük görevler her gün yenilenir.')+(KAYIT.pass?' <b>'+L('Premium aktif:')+'</b>'+L(' 2 ekstra görev ve %50 fazla ödül.'):'')+'</p>';
     for(const gg of KAYIT.gorev.gunluk){
       const t=gorevTanim(gg.id); if(!t) continue;
       const tamam=gg.ilerleme>=t.hedef, odul=Math.round(t.odul*(KAYIT.pass?1.5:1));
-      h+='<div class="kg-sat"><div class="kg-sol"><b>'+t.ad+'</b>'
-        +'<span>'+gg.ilerleme+' / '+t.hedef+' · ödül '+odul+' gold</span>'
+      h+='<div class="kg-sat"><div class="kg-sol"><b>'+L(t.ad)+'</b>'
+        +'<span>'+gg.ilerleme+' / '+t.hedef+' · '+L('Ödül')+' '+odul+' '+L('gold')+'</span>'
         +'<i class="kg-bar"><u style="width:'+(gg.ilerleme/t.hedef*100)+'%"></u></i></div>'
         +'<button class="kg-btn'+(tamam&&!gg.alindi?' hazir':'')+'" data-kggorev="'+gg.id+'"'
-        +((!tamam||gg.alindi)?' disabled':'')+'>'+(gg.alindi?'ALINDI':tamam?'AL':'—')+'</button></div>';
+        +((!tamam||gg.alindi)?' disabled':'')+'>'+(gg.alindi?L('ALINDI'):tamam?L('AL'):'—')+'</button></div>';
     }
-    if(!KAYIT.pass) h+='<button class="big kg-pass" data-kgpass="1">Premium Pass\'i dene (prototip: bedava aç)</button>';
-    else h+='<button class="kg-btn kg-pasifpass" data-kgpass="0">Premium\'u kapat (prototip)</button>';
+    if(!KAYIT.pass) h+='<button class="big kg-pass" data-kgpass="1">'+L("Premium Pass'i dene (prototip: bedava aç)")+'</button>';
+    else h+='<button class="kg-btn kg-pasifpass" data-kgpass="0">'+L("Premium'u kapat (prototip)")+'</button>';
   }
   if(kgSekme==='basarim'){
-    h+='<p class="kg-not">Başarımlar kalıcıdır, bir kez alınır.</p>';
+    h+='<p class="kg-not">'+L('Başarımlar kalıcıdır, bir kez alınır.')+'</p>';
     for(const b of BASARIMLAR){
       const d=basarimDurum(b), tamam=d>=b.hedef, alindi=!!KAYIT.basarim[b.id];
-      h+='<div class="kg-sat"><div class="kg-sol"><b>'+b.ad+'</b>'
-        +'<span>'+b.tx+' · '+Math.min(d,b.hedef)+'/'+b.hedef+' · '+b.odul+' gold</span>'
+      h+='<div class="kg-sat"><div class="kg-sol"><b>'+L(b.ad)+'</b>'
+        +'<span>'+L(b.tx)+' · '+Math.min(d,b.hedef)+'/'+b.hedef+' · '+b.odul+' gold</span>'
         +'<i class="kg-bar"><u style="width:'+Math.min(100,d/b.hedef*100)+'%"></u></i></div>'
         +'<button class="kg-btn'+(tamam&&!alindi?' hazir':'')+'" data-kgbasarim="'+b.id+'"'
-        +((!tamam||alindi)?' disabled':'')+'>'+(alindi?'ALINDI':tamam?'AL':'—')+'</button></div>';
+        +((!tamam||alindi)?' disabled':'')+'>'+(alindi?L('ALINDI'):tamam?L('AL'):'—')+'</button></div>';
     }
   }
   document.getElementById('kgicerik').innerHTML=h;
@@ -1423,19 +1619,19 @@ function vitrinAc(key){
   const C=CIVS[key], K=CIVKADRO[key];
   const eskiCiv=civ[0]; civ[0]=key;                       // statlar bu medeniyete gore
   let h='<div class="vt-kapak"><img src="'+GORSEL[key]+'" alt="">';
-  h+='<div class="vt-ust"><b>'+C.ad+'</b><em>“'+C.slg+'”</em></div></div>';
-  h+='<p class="vt-bonus">'+C.bns+'</p>';
-  h+='<div class="vt-ozet"><span>Eksik birim</span><b>'+UNITS[K.eksik].ad+'</b></div>';
-  h+='<div class="vt-ozet vt-imza"><span>İmza birimi</span><b>'+UNITS[K.imza].ad+'</b></div>';
-  h+='<h3 class="vt-bas">Kadro — 10 birim</h3>';
+  h+='<div class="vt-ust"><b>'+L(C.ad)+'</b><em>“'+L(C.slg)+'”</em></div></div>';
+  h+='<p class="vt-bonus">'+L(C.bns)+'</p>';
+  h+='<div class="vt-ozet"><span>'+L('Eksik birim')+'</span><b>'+L(UNITS[K.eksik].ad)+'</b></div>';
+  h+='<div class="vt-ozet vt-imza"><span>'+L('İmza birimi')+'</span><b>'+L(UNITS[K.imza].ad)+'</b></div>';
+  h+='<h3 class="vt-bas">'+L('Kadro — 10 birim')+'</h3>';
   for(const k of kadro(0)){
     const st=statFor(k,0), cat=UNITS[k].cat, im=!!UNITS[k].imza;
     h+='<button class="kd'+(im?' kd-imza':'')+'" data-birim="'+k+'"><b>'+st.ad+(im?' ★':'')+'</b>'
-      +'<span>'+KATAD[cat]+' · '+st.cost+'g · '+st.maxhp+' can · '+Math.round(st.dmg*10)/10+' hasar</span>'
-      +'<i>'+KATAD[BEATS[cat]]+' birimlere güçlü</i></button>';
+      +'<span>'+L(KATAD[cat])+' · '+st.cost+'g · '+st.maxhp+' '+L('can')+' · '+Math.round(st.dmg*10)/10+' '+L('hasar')+'</span>'
+      +'<i>'+L(KATAD[BEATS[cat]])+' '+L('birimlere güçlü')+'</i></button>';
   }
   civ[0]=eskiCiv;
-  h+='<button class="big vt-sec" data-secciv="'+key+'">Bu medeniyetle savaş</button>';
+  h+='<button class="big vt-sec" data-secciv="'+key+'">'+L('Bu medeniyetle savaş')+'</button>';
   document.getElementById('vitrinicerik').innerHTML=h;
   document.getElementById('vitrinmodal').style.display='flex';
 }
@@ -1446,28 +1642,28 @@ function vitrinKapat(){
 
 // ==== BILGI ====
 function yenenKategoriler(cat){                     // bu kategoriyi kim yener
-  const r=[]; for(const k in BEATS) if(BEATS[k]===cat) r.push(KATAD[k]);
+  const r=[]; for(const k in BEATS) if(BEATS[k]===cat) r.push(L(KATAD[k]));
   return r.length?r.join(', '):'—';
 }
 function birimKarti(key){
   const st=statFor(key,0), cat=UNITS[key].cat, imzaMi=!!UNITS[key].imza;
-  const guclu=KATAD[BEATS[cat]]||'—', zayif=yenenKategoriler(cat);
+  const guclu=L(KATAD[BEATS[cat]])||'—', zayif=yenenKategoriler(cat);
   let h='';
   if(imzaMi && GORSEL[UNITS[key].imza])
     h+='<div class="bk-gorsel"><img src="'+GORSEL[UNITS[key].imza]+'" alt=""></div>';
-  h+='<div class="bk-bas"><b>'+st.ad+'</b><em>'+KATAD[cat]+'</em></div>';
-  h+='<div class="bk-satir"><span>Fiyat</span><b>'+st.cost+' gold</b></div>';
-  h+='<div class="bk-satir"><span>Bekleme</span><b>'+beklemeSuresi(st.cost).toFixed(1)+' sn</b></div>';
-  h+='<div class="bk-satir"><span>Can</span><b>'+st.maxhp+'</b></div>';
-  h+='<div class="bk-satir"><span>Hasar</span><b>'+(key==='curse'?'canın %3\'ü':key==='healer'?'—':Math.round(st.dmg*10)/10)+'</b></div>';
-  h+='<div class="bk-satir"><span>Menzil</span><b>'+(st.rng>100?'Uzun':st.rng>40?'Orta':'Yakın')+' ('+Math.round(st.rng)+')</b></div>';
-  h+='<div class="bk-satir"><span>Hız</span><b>'+(st.spd>=70?'Çok hızlı':st.spd>=45?'Hızlı':st.spd>=33?'Orta':'Yavaş')+'</b></div>';
-  h+='<p class="bk-yet">'+(YETENEK[key]||'')+'</p>';
-  h+='<div class="bk-ct bk-iyi"><span>Güçlü olduğu</span><b>'+guclu+'</b><i>2.5 kat hasar</i></div>';
-  h+='<div class="bk-ct bk-kotu"><span>Karşısında zayıf</span><b>'+zayif+'</b><i>2.5 kat hasar yer</i></div>';
+  h+='<div class="bk-bas"><b>'+st.ad+'</b><em>'+L(KATAD[cat])+'</em></div>';
+  h+='<div class="bk-satir"><span>'+L('Fiyat')+'</span><b>'+st.cost+' '+L('gold')+'</b></div>';
+  h+='<div class="bk-satir"><span>'+L('Bekleme')+'</span><b>'+beklemeSuresi(st.cost).toFixed(1)+' sn</b></div>';
+  h+='<div class="bk-satir"><span>'+L('Can')+'</span><b>'+st.maxhp+'</b></div>';
+  h+='<div class="bk-satir"><span>'+L('Hasar')+'</span><b>'+(key==='curse'?L('canın %3\u0027ü'):key==='healer'?'—':Math.round(st.dmg*10)/10)+'</b></div>';
+  h+='<div class="bk-satir"><span>'+L('Menzil')+'</span><b>'+L(st.rng>100?'Uzun':st.rng>40?'Orta':'Yakın')+' ('+Math.round(st.rng)+')</b></div>';
+  h+='<div class="bk-satir"><span>'+L('Hız')+'</span><b>'+L(st.spd>=70?'Çok hızlı':st.spd>=45?'Hızlı':st.spd>=33?'Orta':'Yavaş')+'</b></div>';
+  h+='<p class="bk-yet">'+L(YETENEK[key]||'')+'</p>';
+  h+='<div class="bk-ct bk-iyi"><span>'+L('Güçlü olduğu')+'</span><b>'+guclu+'</b><i>'+L('2.5 kat hasar')+'</i></div>';
+  h+='<div class="bk-ct bk-kotu"><span>'+L('Karşısında zayıf')+'</span><b>'+zayif+'</b><i>'+L('2.5 kat hasar yer')+'</i></div>';
   if(imzaMi){
-    h+='<div class="bk-imza"><b>İmza birimi — Seviye '+imzaLvl[0]+'/'+IMZA.maxLvl+'</b>';
-    h+='<span>'+(imzaLvl[0]<IMZA.maxLvl?('Güçlendirme: '+imzaCost(0)+' gold'):'Azami seviyede')+'</span></div>';
+    h+='<div class="bk-imza"><b>'+L('İmza birimi')+' — '+L('Seviye')+' '+imzaLvl[0]+'/'+IMZA.maxLvl+'</b>';
+    h+='<span>'+(imzaLvl[0]<IMZA.maxLvl?(L('Güçlendir')+': '+imzaCost(0)+' '+L('gold')):L('AZAMİ SEVİYE'))+'</span></div>';
   }
   return h;
 }
@@ -1490,7 +1686,7 @@ function kodeksAc(){
   for(const k of kadro(0)){
     const st=statFor(k,0), cat=UNITS[k].cat;
     h+='<button class="kd" data-birim="'+k+'"><b>'+st.ad+'</b>'
-      +'<span>'+KATAD[cat]+' · '+st.cost+'g · '+st.maxhp+' can</span>'
+      +'<span>'+L(KATAD[cat])+' · '+st.cost+'g · '+st.maxhp+' '+L('can')+'</span>'
       +'<i>'+KATAD[BEATS[cat]]+' birimlere güçlü</i></button>';
   }
   document.getElementById('infoicerik').innerHTML=h;
@@ -1512,9 +1708,9 @@ function tavsiye(){
     if(top==='rng' && U.shield) return true;                              // kalkanli
     return false;
   });
-  if(!oner.length) return 'Rakipte ağırlık: '+KATAD[top]+' — kadronda doğrudan karşılığı yok, çeşitlendir';
+  if(!oner.length) return L('Rakipte ağırlık: ')+L(KATAD[top])+L(' — kadronda doğrudan karşılığı yok, çeşitlendir');
   const ucuz=oner.map(k=>({k,c:statFor(k,0).cost})).sort((a,b)=>a.c-b.c)[0];
-  return 'Rakipte ağırlık: '+KATAD[top]+' → önerilen karşılık: '+statFor(ucuz.k,0).ad;
+  return L('Rakipte ağırlık: ')+L(KATAD[top])+L('→ önerilen karşılık: ')+statFor(ucuz.k,0).ad;
 }
 
 // ==== UI ====
@@ -1531,15 +1727,15 @@ function refreshButtons(){
   const tb=document.getElementById('towerbtn');
   if(tb){
     const max=bases[0].lvl>=TOWER.maxLvl;
-    tb.querySelector('b').textContent='Üs Saldırısı  Lv'+bases[0].lvl+'  ('+towerDmg(0)+' hasar)';
-    tb.querySelector('small').textContent=max?'AZAMİ SEVİYE':'Yükselt — '+upCost(0)+'g';
+    tb.querySelector('b').textContent=L('Üs Saldırısı')+'  Lv'+bases[0].lvl+'  ('+Math.round(towerDmg(0))+' '+L('hasar')+')';
+    tb.querySelector('small').textContent=max?L('AZAMİ SEVİYE'):L('Yükselt')+' — '+upCost(0)+'g';
     tb.disabled = max || gold[0]<upCost(0) || paused || over;
   }
   const ib=document.getElementById('imzabtn');
   if(ib && civ[0]){
     const ik=CIVKADRO[civOf(0)].imza, imax=imzaLvl[0]>=IMZA.maxLvl;
-    ib.querySelector('b').textContent=UNITS[ik].ad+'  Lv'+imzaLvl[0];
-    ib.querySelector('small').textContent=imax?'AZAMİ SEVİYE':'Güçlendir — '+imzaCost(0)+'g';
+    ib.querySelector('b').textContent=L(UNITS[ik].ad)+'  Lv'+imzaLvl[0];
+    ib.querySelector('small').textContent=imax?L('AZAMİ SEVİYE'):L('Güçlendir')+' — '+imzaCost(0)+'g';
     ib.disabled = imax || gold[0]<imzaCost(0) || paused || over;
   }
   const sc=document.getElementById('sahatx');
@@ -1551,10 +1747,10 @@ function refreshButtons(){
     const son=age[0]>=3, hazir=cagHazir(0), bedel=cagBedel(0), yeter=gold[0]>=bedel;
     cd.style.width=(cagOran(0)*100).toFixed(1)+'%';
     cb.className='cagbtn'+(son?' cag-son':hazir?(yeter?' cag-hazir':' cag-bekle'):'');
-    ct.textContent = son ? 'IV. Çağ — son çağ'
-      : hazir ? (yeter ? '⚑ '+['II.','III.','IV.'][age[0]]+' Çağa geç — '+bedel+' gold'
-                       : ['II.','III.','IV.'][age[0]]+' Çağ hazır — '+bedel+' gold gerekiyor')
-      : ['II.','III.','IV.'][age[0]]+' Çağ  ·  %'+Math.floor(cagOran(0)*100)+'  (harcadıkça dolar)';
+    ct.textContent = son ? ('IV. '+L('Çağ')+' — '+L('son çağ'))
+      : hazir ? (yeter ? ('⚑ '+['II.','III.','IV.'][age[0]]+' '+L('Çağa geç')+' — '+bedel+' '+L('gold'))
+                       : (['II.','III.','IV.'][age[0]]+' '+L('Çağ hazır')+' — '+bedel+' '+L('gold gerekiyor')))
+      : (['II.','III.','IV.'][age[0]]+' '+L('Çağ')+'  ·  %'+Math.floor(cagOran(0)*100)+'  '+L('(harcadıkça dolar)'));
     cb.disabled = son || !hazir || !yeter || paused || over;
   }
 }
@@ -1582,7 +1778,7 @@ function buildUI(){
     const st=statFor(k,0);
     const b=document.createElement('button'); b.className='ub'; b.dataset.k=k;
     const ik=UNITS[k].imza;
-    const gor = ik&&GORSELK[ik] ? '<img src="'+GORSELK[ik]+'" alt="">' : '<span class="ub-kod">'+st.k+'</span>';
+    const gor = ik&&GORSELK[ik] ? '<img src="'+GORSELK[ik]+'" alt="">' : '<span class="ub-kod">'+L(st.k)+'</span>';
     b.innerHTML='<span class="ub-gor kat-'+UNITS[k].cat+'">'+gor+'<em class="ub-fiyat"></em></span>'
       +'<u>'+st.ad+'</u>'
       +'<span class="ub-stat"><b class="ub-dmg"></b><b class="ub-hp"></b></span>';
@@ -1623,9 +1819,9 @@ function macSonuIsle(win){
       if(toplam>0 && harcamaBirim[k] >= toplam*USTALIK_PAY){
         const onceki=ustalikSeviye(k);
         KAYIT.ustalik[k]=(KAYIT.ustalik[k]||0)+puan;
-        oduller.push(UNITS[k].ad+' ustalık +'+puan+' puan');
+        oduller.push(L(UNITS[k].ad)+L(' ustalık +')+puan+L(' puan'));
         if(ustalikSeviye(k)>onceki)
-          oduller.push('★ '+UNITS[k].ad+' — '+['I','II','III','IV','V'][ustalikSeviye(k)-1]+'. Ustalık açıldı!');
+          oduller.push('★ '+L(UNITS[k].ad)+' — '+['I','II','III','IV','V'][ustalikSeviye(k)-1]+'.'+L(' Ustalık açıldı!'));
       }
     }
   } else oduller.push('Maç 90 sn\'den kısa: ustalık puanı verilmedi');
@@ -1639,7 +1835,7 @@ function macSonuIsle(win){
 function endGame(win){
   if(over) return; over=true;
   const oduller=macSonuIsle(win);
-  document.getElementById('endtitle').textContent = win?'Zafer!':'Yenilgi';
+  document.getElementById('endtitle').textContent = L(win?'Zafer!':'Yenilgi');
   document.getElementById('endtitle').style.color = win?'#5DCAA5':'#C24B4B';
   document.getElementById('endtxt').innerHTML = oduller.map(function(o){return '<span class="od">'+o+'</span>';}).join('');
   document.getElementById('endscr').style.display='flex';
@@ -1652,8 +1848,8 @@ function menuAc(){
   paused=true;
   document.getElementById('menumodal').style.display='flex';
   document.getElementById('menubilgi').textContent =
-    CIVS[civOf(0)].ad+' — '+['I.','II.','III.','IV.'][age[0]]+' Çağ'+
-    (civ[1]?('  ·  Rakip: '+CIVS[civ[1]].ad):'');
+    L(CIVS[civOf(0)].ad)+' — '+['I.','II.','III.','IV.'][age[0]]+' '+L('Çağ')+
+    (civ[1]?('  ·  '+L(CIVS[civ[1]].ad)):'');
   refreshButtons();
 }
 function menuKapat(){
@@ -1711,7 +1907,7 @@ function medeniyetSec(key){
     civ[1]=others[rndInt(others.length)];
     document.getElementById('select').style.display='none';
     document.getElementById('game').style.display='block';
-    toast('Rakip medeniyet: '+CIVS[civ[1]].ad);
+    toast(L('Rakip medeniyet: ')+L(CIVS[civ[1]].ad));
     boyutlandir();
     buildUI(); refreshButtons();
     requestAnimationFrame(loop);
@@ -1723,7 +1919,7 @@ function medeniyetSec(key){
 // Olay delegasyonu: tek dinleyici, tum belgede calisir (baglanma kacirilamaz)
 (function(){
   var uy=document.getElementById('jsuyari'); if(uy) uy.style.display='none';
-  KAYIT=kayitYukle(); gorevleriTazele();
+  KAYIT=kayitYukle(); DIL=KAYIT.dil||'tr'; gorevleriTazele(); dilUygula();
   function bul(el){
     while(el && el!==document.body){
       if(el.getAttribute && el.getAttribute('data-civ')) return el.getAttribute('data-civ');
@@ -1754,6 +1950,8 @@ function medeniyetSec(key){
   }
   function isle(e){
     var hedef=e.target||e.srcElement;
+    if(nitelikBul(hedef,'data-dil')){ if(e.preventDefault) e.preventDefault();
+      dilDegistir(DIL==='tr'?'en':'tr'); return; }
     var kgs=nitelikBul(hedef,'data-kgsekme');
     if(kgs){ if(e.preventDefault) e.preventDefault(); kgAc(kgs); return; }
     var kgy=nitelikBul(hedef,'data-kgyuk');
@@ -1792,7 +1990,7 @@ function medeniyetSec(key){
   document.addEventListener('click',isle,false);
   document.addEventListener('touchend',isle,false);
   var n=document.querySelectorAll('#civlist .civ').length;
-  durum(n+' medeniyet — incelemek için dokun');
+  durum(DIL==='en'?(n+' civilizations — tap to inspect'):(n+' medeniyet — incelemek için dokun'));
 })();
 
 window.addEventListener('resize',function(){ if(civ[0]) boyutlandir(); },false);
