@@ -150,6 +150,40 @@ canvas{width:100%;display:block;background:#7FA6B8;border:1px solid var(--line);
 .vt-kapat{width:100%;margin-top:8px;background:var(--panel);color:var(--parch)}
 .bk-gorsel{margin:0 -18px 12px;line-height:0;border-radius:6px 6px 0 0;overflow:hidden}
 .bk-gorsel img{width:100%;display:block}
+/* --- ana menu --- */
+#select,#medeniyetler{display:none}
+.am-logo{text-align:center;padding:26px 0 18px}
+.am-logo h1{font-size:30px;margin-bottom:4px}
+.am-durum{display:flex;align-items:center;justify-content:space-between;
+  background:linear-gradient(180deg,#22303F,#1A242F);border:1px solid var(--line);
+  border-radius:8px;padding:11px 14px;margin-bottom:14px}
+.am-gold b{color:var(--ember);font-size:20px}
+.am-gold i{font-style:normal;color:var(--dim);font-size:12px}
+.am-ist{color:var(--dim);font-size:12px;text-align:right}
+.am-menu{display:grid;gap:9px}
+.am-btn{display:block;width:100%;text-align:left;padding:14px 16px;border-radius:9px;
+  background:linear-gradient(180deg,#243241,#1A242F);border:1px solid var(--line);color:var(--parch)}
+.am-btn b{display:block;font-size:17px;font-weight:normal;letter-spacing:1px}
+.am-btn span{display:block;color:var(--dim);font-size:12px;margin-top:3px}
+.am-btn:active{border-color:var(--ember);background:var(--panel)}
+.am-ana{border-color:var(--ember);background:linear-gradient(180deg,#3A2C16,#241B10)}
+.am-ana b{color:var(--ember);font-size:19px}
+/* --- alt ekran basliklari --- */
+.ek-bas{display:flex;align-items:center;gap:10px;padding:6px 0 14px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.ek-bas h2{font-size:17px;font-weight:normal;letter-spacing:2px;color:var(--ember);text-transform:uppercase}
+.geri{background:var(--ink2);border:1px solid var(--line);color:var(--parch);
+  width:36px;height:34px;border-radius:7px;font-size:20px;line-height:1;padding:0}
+.geri:active{border-color:var(--ember)}
+.ek-not{font-size:12px;color:var(--dim);line-height:1.5;margin-bottom:12px}
+/* --- ayarlar --- */
+.ay-sat{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:11px 0;border-bottom:1px solid var(--line)}
+.ay-sat b{font-size:14px;font-weight:normal}
+.ay-sat span{display:block;color:var(--dim);font-size:11.5px;margin-top:2px}
+.ay-btn{background:var(--panel);border:1px solid var(--line);color:var(--parch);
+  padding:8px 14px;border-radius:6px;font-size:13px;min-width:66px}
+.ay-btn:active{border-color:var(--ember)}
+.ay-tehlike{border-color:var(--p2);color:#FF9B90}
 .dilbtn{position:absolute;right:14px;top:14px;background:var(--ink2);border:1px solid var(--line);
   color:var(--parch);padding:5px 11px;border-radius:5px;font-size:12px;letter-spacing:1px;z-index:5}
 #select{position:relative}
@@ -190,10 +224,46 @@ window.onerror=function(msg,src,ln,col){
   return false;
 };
 </script>
+<!-- ANA MENU -->
+<div class="screen" id="anamenu">
+  <div class="am-logo">
+    <h1 data-i18n="Çağlar Savaşı">Çağlar Savaşı</h1>
+    <p class="sub" data-i18n="Beş medeniyet, tek meydan">Beş medeniyet, tek meydan</p>
+  </div>
+  <div id="jsuyari">JavaScript çalışmıyor. iPhone'da Dosyalar uygulamasının önizlemesi
+    JavaScript'i engeller: dosyayı açınca sağ üstteki paylaş simgesine dokunup
+    <b>Safari'de Aç</b> seçeneğini kullan.</div>
+  <div class="am-durum">
+    <span class="am-gold"><b id="amgold">0</b> <i data-i18n="gold">gold</i></span>
+    <span class="am-ist" id="amist"></span>
+  </div>
+  <div class="am-menu">
+    <button class="am-btn am-ana" data-ekran="select">
+      <b data-i18n="Savaşa Başla">Savaşa Başla</b>
+      <span data-i18n="Medeniyetini seç ve orduyu yürüt">Medeniyetini seç ve orduyu yürüt</span>
+    </button>
+    <button class="am-btn" data-ekran="medeniyetler">
+      <b data-i18n="Medeniyetler">Medeniyetler</b>
+      <span data-i18n="Kadroları ve birimleri incele">Kadroları ve birimleri incele</span>
+    </button>
+    <button class="am-btn" data-eylem="karargah">
+      <b data-i18n="Karargâh">Karargâh</b>
+      <span data-i18n="Yükseltme, ustalık, görevler">Yükseltme, ustalık, görevler</span>
+    </button>
+    <button class="am-btn" data-eylem="ayarlar">
+      <b data-i18n="Ayarlar">Ayarlar</b>
+      <span data-i18n="Dil, zorluk ve kayıt">Dil, zorluk ve kayıt</span>
+    </button>
+  </div>
+  <p id="durum">JavaScript yükleniyor…</p>
+</div>
+
+<!-- SAVAS HAZIRLIGI -->
 <div class="screen" id="select">
-  <button class="dilbtn" id="dilbtn" data-dil="1">EN</button>
-  <h1 data-i18n="Çağlar Savaşı">Çağlar Savaşı</h1>
-  <p class="sub" data-i18n="Prototip sürüm — medeniyetini seç ve orduyu yürüt">Prototip sürüm — medeniyetini seç ve orduyu yürüt</p>
+  <div class="ek-bas">
+    <button class="geri" data-ekran="anamenu">‹</button>
+    <h2 data-i18n="Savaşa Başla">Savaşa Başla</h2>
+  </div>
   <div class="zorluk">
     <label for="zorluksec" data-i18n="Rakip zorluğu">Rakip zorluğu</label>
     <select id="zorluksec">
@@ -202,21 +272,35 @@ window.onerror=function(msg,src,ln,col){
       <option value="zor" data-i18n="Zor — usta stratejist">Zor — usta stratejist</option>
     </select>
   </div>
-  <div id="jsuyari">JavaScript çalışmıyor. iPhone'da Dosyalar uygulamasının önizlemesi
-    JavaScript'i engeller: dosyayı açınca sağ üstteki paylaş simgesine dokunup
-    <b>Safari'de Aç</b> seçeneğini kullan.</div>
-  <button class="big kg-ac" data-eylem="karargah" data-i18n="⚔ Karargâh — yükseltmeler, ustalık, görevler">⚔ Karargâh — yükseltmeler, ustalık, görevler</button>
-  <p id="durum">JavaScript yükleniyor…</p>
+  <p class="ek-not" data-i18n="Bir medeniyete dokunarak kadrosunu incele, sonra savaşa gir.">Bir medeniyete dokunarak kadrosunu incele, sonra savaşa gir.</p>
   <div class="civs" id="civlist">
-    <button class="civ" data-civ="veyra"><b>Veyra Doğuşu</b><span class="slg">&ldquo;Rüzgardan hızlı, gölgeden sessiz.&rdquo;</span><span class="bns">Süvariler %10 hızlı — Özel piyade: Rüzgar Kılıcı (88 can, hızlı, ucuz)</span></button>
-    <button class="civ" data-civ="zeruhan"><b>Zeruhan Egemenliği</b><span class="slg">&ldquo;Duvarlar yıkılır, biz kalırız.&rdquo;</span><span class="bns">Kalkanlı okçu ve fil +%10 can — Özel piyade: Demirbend (130 can, yavaş)</span></button>
-    <button class="civ" data-civ="morvain"><b>Morvain Tarikatı</b><span class="slg">&ldquo;Görünmeyeni bilen, görüneni yönetir.&rdquo;</span><span class="bns">Büyücü etkisi +%15 — Özel piyade: Ruhbağlı (ölünce patlar)</span></button>
-    <button class="civ" data-civ="askarid"><b>Askarid Birliği</b><span class="slg">&ldquo;Ok yaydan çıkar, kader yazılır.&rdquo;</span><span class="bns">Menzilli birimlerin menzili +%8 — Özel piyade: Avcı (mızrak fırlatır)</span></button>
-    <button class="civ" data-civ="tharvenn"><b>Tharvenn Loncası</b><span class="slg">&ldquo;Her savaşın bir bedeli, her bedelin bir kazananı vardır.&rdquo;</span><span class="bns">Tüm birimler %5 ucuz — Özel piyade: Paralı Kılıç (ölünce 5g iade)</span></button>
+    <button class="civ" data-civ="veyra"><b>Veyra Doğuşu</b><span class="slg">&ldquo;Rüzgardan hızlı, gölgeden sessiz.&rdquo;</span><span class="bns">Yağma: öldürme geliri +%40 · Süvariler %10 hızlı</span></button>
+    <button class="civ" data-civ="zeruhan"><b>Zeruhan Egemenliği</b><span class="slg">&ldquo;Duvarlar yıkılır, biz kalırız.&rdquo;</span><span class="bns">Kuşatma: düşman üssüne +%45 hasar</span></button>
+    <button class="civ" data-civ="morvain"><b>Morvain Tarikatı</b><span class="slg">&ldquo;Görünmeyeni bilen, görüneni yönetir.&rdquo;</span><span class="bns">Büyücü etkisi +%15</span></button>
+    <button class="civ" data-civ="askarid"><b>Askarid Birliği</b><span class="slg">&ldquo;Ok yaydan çıkar, kader yazılır.&rdquo;</span><span class="bns">Menzilli birimlerin menzili +%8</span></button>
+    <button class="civ" data-civ="tharvenn"><b>Tharvenn Loncası</b><span class="slg">&ldquo;Her savaşın bir bedeli, her bedelin bir kazananı vardır.&rdquo;</span><span class="bns">Tüm birimler %3 ucuz</span></button>
   </div>
 </div>
 
-<div class="modal" id="kgmodal">
+<!-- MEDENIYETLER (kodeks) -->
+<div class="screen" id="medeniyetler">
+  <div class="ek-bas">
+    <button class="geri" data-ekran="anamenu">‹</button>
+    <h2 data-i18n="Medeniyetler">Medeniyetler</h2>
+  </div>
+  <p class="ek-not" data-i18n="Her medeniyetin 10 birimlik kendi kadrosu, bir eksik birimi ve bir imza birimi vardır.">Her medeniyetin 10 birimlik kendi kadrosu, bir eksik birimi ve bir imza birimi vardır.</p>
+  <div class="civs" id="civlist2"></div>
+</div>
+
+<div class="modal" id="ayarmodal">
+    <div class="mbox">
+      <h2 data-i18n="Ayarlar">Ayarlar</h2>
+      <div id="ayaricerik"></div>
+      <button class="big vt-kapat" data-eylem="ayarkapat" data-i18n="Kapat">Kapat</button>
+    </div>
+  </div>
+
+  <div class="modal" id="kgmodal">
     <div class="mbox mbox-genis">
       <div id="kgicerik"></div>
       <button class="big vt-kapat" data-eylem="kgkapat" data-i18n="Kapat">Kapat</button>
@@ -593,6 +677,17 @@ const EN={
 // birim kisa kodlari / unit codes
 'YD':'MF','OK':'AR','KO':'SA','AS':'HW','AO':'HA','FB':'ER','LB':'CM','MB':'MM','ŞF':'HL','KŞ':'MK',
 'AK':'RD','KA':'SH','RE':'SD','KG':'PK','SK':'CB','RK':'WB','DB':'IB','RB':'SB','AV':'HN','PK':'HB',
+'Beş medeniyet, tek meydan':'Five civilizations, one battlefield',
+'Savaşa Başla':'Start Battle','Medeniyetini seç ve orduyu yürüt':'Choose your civilization and march',
+'Medeniyetler':'Civilizations','Kadroları ve birimleri incele':'Browse rosters and units',
+'Karargâh':'Headquarters','Yükseltme, ustalık, görevler':'Upgrades, mastery, quests',
+'Ayarlar':'Settings','Dil, zorluk ve kayıt':'Language, difficulty and save',
+'Bir medeniyete dokunarak kadrosunu incele, sonra savaşa gir.':'Tap a civilization to inspect its roster, then march to battle.',
+'Her medeniyetin 10 birimlik kendi kadrosu, bir eksik birimi ve bir imza birimi vardır.':'Each civilization has its own roster of 10 units, one missing unit and one signature unit.',
+'Dil':'Language','Premium Pass':'Premium Pass','Prototip: ücretsiz açılır':'Prototype: unlocks for free',
+'Aç':'Enable','İstatistikler':'Statistics','birim':'units','öldürme':'kills',
+'Kaydı sıfırla':'Reset save','Tüm ilerleme silinir, geri alınamaz':'All progress is erased and cannot be undone',
+'Sıfırla':'Reset','Emin misin?':'Are you sure?',
 'Çağ':'Age','Çağa geç':'Advance to age','Çağ hazır':'Age ready','(harcadıkça dolar)':'(fills as you spend)',
 'gold gerekiyor':'gold required','son çağ':'final age',
 'Premium Pass\'i dene (prototip: bedava aç)':'Try Premium Pass (prototype: unlock free)',
@@ -611,6 +706,8 @@ function dilDegistir(d){
   if(civ[0]){ temizle(document.getElementById('ubar')); buildUI(); refreshButtons(); }
 }
 function dilUygula(){
+  if(typeof medeniyetListesi==='function' && document.getElementById('civlist2')) medeniyetListesi();
+  if(typeof anaMenuTazele==='function' && document.getElementById('amgold')) anaMenuTazele();
   // statik metinler
   const el=document.querySelectorAll('[data-i18n]');
   for(let i=0;i<el.length;i++){
@@ -1544,6 +1641,62 @@ function draw(){
   document.querySelector('#ehp i').style.width=Math.max(0,bases[1].hp/bases[1].max*100)+'%';
 }
 
+// ==== EKRAN YONLENDIRICI ====
+const EKRANLAR=['anamenu','select','medeniyetler'];
+function ekranAc(ad){
+  if(EKRANLAR.indexOf(ad)<0) ad='anamenu';     // bilinmeyen ekran -> bos sayfa yerine ana menu
+  for(const e of EKRANLAR){
+    const el=document.getElementById(e);
+    if(el) el.style.display = (e===ad) ? 'block' : 'none';
+  }
+  const g=document.getElementById('game'); if(g) g.style.display='none';
+  if(ad==='anamenu') anaMenuTazele();
+  if(ad==='medeniyetler') medeniyetListesi();
+}
+function anaMenuTazele(){
+  const g=document.getElementById('amgold'); if(g) g.textContent=String(KAYIT.gold);
+  const i=document.getElementById('amist');
+  if(i) i.textContent=KAYIT.ist.galibiyet+' '+L('galibiyet')+' · '+KAYIT.ist.mac+' '+L('maç');
+}
+function medeniyetListesi(){
+  const kap=document.getElementById('civlist2'); if(!kap) return;
+  let h='';
+  for(const k of Object.keys(CIVS)){
+    const C=CIVS[k];
+    h+='<button class="civ" data-civ="'+k+'"><b>'+L(C.ad)+'</b>'
+      +'<span class="slg">\u201C'+L(C.slg)+'\u201D</span>'
+      +'<span class="bns">'+L(C.bns)+'</span></button>';
+  }
+  kap.innerHTML=h;
+}
+// ==== AYARLAR ====
+function ayarAc(){
+  let h='<div class="ay-sat"><div><b>'+L('Dil')+'</b><span>'+(DIL==='tr'?'Türkçe':'English')+'</span></div>'
+    +'<button class="ay-btn" data-dil="1">'+(DIL==='tr'?'English':'Türkçe')+'</button></div>';
+  h+='<div class="ay-sat"><div><b>'+L('Premium Pass')+'</b><span>'+L('Prototip: ücretsiz açılır')+'</span></div>'
+    +'<button class="ay-btn" data-kgpass="'+(KAYIT.pass?'0':'1')+'">'+(KAYIT.pass?L('Kapat'):L('Aç'))+'</button></div>';
+  h+='<div class="ay-sat"><div><b>'+L('İstatistikler')+'</b><span>'
+    +KAYIT.ist.mac+' '+L('maç')+' · '+KAYIT.ist.galibiyet+' '+L('galibiyet')+' · '
+    +KAYIT.ist.birim+' '+L('birim')+' · '+KAYIT.ist.oldurme+' '+L('öldürme')+'</span></div></div>';
+  h+='<div class="ay-sat"><div><b>'+L('Kaydı sıfırla')+'</b><span>'+L('Tüm ilerleme silinir, geri alınamaz')+'</span></div>'
+    +'<button class="ay-btn ay-tehlike" data-sifirla="1">'+L('Sıfırla')+'</button></div>';
+  document.getElementById('ayaricerik').innerHTML=h;
+  document.getElementById('ayarmodal').style.display='flex';
+}
+function ayarKapat(){ document.getElementById('ayarmodal').style.display='none'; }
+let sifirlaOnay=false;
+function kayitSifirla(){
+  if(!sifirlaOnay){ sifirlaOnay=true;
+    const b=document.querySelector('[data-sifirla]');
+    if(b) b.textContent=L('Emin misin?');
+    setTimeout(function(){ sifirlaOnay=false; if(b) b.textContent=L('Sıfırla'); },4000);
+    return; }
+  sifirlaOnay=false;
+  const d=DIL;
+  KAYIT=bosKayit(); KAYIT.dil=d; kayitYaz(); gorevleriTazele();
+  ayarAc(); anaMenuTazele();
+}
+
 // ==== KARARGAH EKRANI ====
 let kgSekme='yukseltme';
 const KATAD_UZUN={inf:'Piyade',rng:'Menzilli',cav:'Süvari',hvy:'Ağır',mag:'Büyü',sup:'Destek'};
@@ -1611,7 +1764,7 @@ function kgAc(sekme){
   document.getElementById('kgicerik').innerHTML=h;
   document.getElementById('kgmodal').style.display='flex';
 }
-function kgKapat(){ document.getElementById('kgmodal').style.display='none'; }
+function kgKapat(){ document.getElementById('kgmodal').style.display='none'; anaMenuTazele(); }
 
 // ==== MEDENIYET VITRINI ====
 function vitrinAc(key){
@@ -1881,9 +2034,7 @@ function menuyeDon(){
   vitrinCiv=null; paused=false;
   temizle(document.getElementById('ubar'));
   oyunBasladi=false; civ=[null,null];
-  document.getElementById('game').style.display='none';
-  document.getElementById('select').style.display='block';
-  durum('5 medeniyet hazır — birine dokun');
+  ekranAc('anamenu');
 }
 
 // ==== BASLAT ====
@@ -1905,7 +2056,7 @@ function medeniyetSec(key){
     macSure=0; harcamaBirim={}; macOldurme=0; macBirim=0; macCag=0;
     var others=Object.keys(CIVS).filter(function(k){return k!==key;});
     civ[1]=others[rndInt(others.length)];
-    document.getElementById('select').style.display='none';
+    for(const e of EKRANLAR){ const el=document.getElementById(e); if(el) el.style.display='none'; }
     document.getElementById('game').style.display='block';
     toast(L('Rakip medeniyet: ')+L(CIVS[civ[1]].ad));
     boyutlandir();
@@ -1919,7 +2070,7 @@ function medeniyetSec(key){
 // Olay delegasyonu: tek dinleyici, tum belgede calisir (baglanma kacirilamaz)
 (function(){
   var uy=document.getElementById('jsuyari'); if(uy) uy.style.display='none';
-  KAYIT=kayitYukle(); DIL=KAYIT.dil||'tr'; gorevleriTazele(); dilUygula();
+  KAYIT=kayitYukle(); DIL=KAYIT.dil||'tr'; gorevleriTazele(); dilUygula(); ekranAc('anamenu');
   function bul(el){
     while(el && el!==document.body){
       if(el.getAttribute && el.getAttribute('data-civ')) return el.getAttribute('data-civ');
@@ -1951,7 +2102,10 @@ function medeniyetSec(key){
   function isle(e){
     var hedef=e.target||e.srcElement;
     if(nitelikBul(hedef,'data-dil')){ if(e.preventDefault) e.preventDefault();
-      dilDegistir(DIL==='tr'?'en':'tr'); return; }
+      dilDegistir(DIL==='tr'?'en':'tr'); if(document.getElementById('ayarmodal').style.display==='flex') ayarAc(); return; }
+    var ekr=nitelikBul(hedef,'data-ekran');
+    if(ekr){ if(e.preventDefault) e.preventDefault(); ekranAc(ekr); return; }
+    if(nitelikBul(hedef,'data-sifirla')){ if(e.preventDefault) e.preventDefault(); kayitSifirla(); return; }
     var kgs=nitelikBul(hedef,'data-kgsekme');
     if(kgs){ if(e.preventDefault) e.preventDefault(); kgAc(kgs); return; }
     var kgy=nitelikBul(hedef,'data-kgyuk');
@@ -1971,6 +2125,8 @@ function medeniyetSec(key){
     if(ey){
       if(e.preventDefault) e.preventDefault();
       if(ey==='karargah') kgAc();
+      else if(ey==='ayarlar') ayarAc();
+      else if(ey==='ayarkapat') ayarKapat();
       else if(ey==='kgkapat') kgKapat();
       else if(ey==='cagatla') cagAtla(0);
       else if(ey==='kodeks') kodeksAc();
